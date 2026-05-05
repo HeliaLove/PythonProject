@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 import logging
 from dotenv import load_dotenv
-import json
 import os
 import random
 
@@ -47,21 +46,21 @@ async def on_message(message):
 
 @bot.command()
 async def fdd_add(ctx,msg):
-    with open(f"fdd.json", "w") as f:
+    with open(f"fdd.txt", "a") as f:
         x = [f"{msg}"]
-        json.dump({"FDD" : x}, f)
+        f.dump(x)
         await ctx.send(f"{msg} ajouté")
 
 
 @bot.command()
 async def fdd_help(ctx):
     await ctx.send(
-        f"Pour les roll ! :\n1er roll:\n25 ou moins = fruit du démon\n2ème roll :\n95 ou plus = Logia\n 70 ou plus = Zoan\n en dessous de 70 = Paramecia")
+        f"Pour les roll ! :\n1er roll:\n25 ou moins = fruit du démon\n2ème roll :\n95 ou plus = Logia\n70 ou plus = Zoan\nen dessous de 70 = Paramecia")
 
 @bot.command()
 async def fdd_random(ctx):
 
-    y = json.loads(open(f"fdd.json", "r").read())
+
 
 
     randomFDD = random.randint(1,100)
@@ -75,11 +74,22 @@ async def fdd_random(ctx):
             await ctx.send(f"tu as un Zoan !!!! (roll : {randomFDD})")
         elif randomFDD < 70  :
             await ctx.send(f"tu as un Paramecia ({randomFDD})")
+            with open("fdd.txt", "r") as y:
+                contents = y.readlines()
+                chosen = random.randint(0 , len(contents))
 
 
 
-    else:
-        await ctx.send(f"t'as rien... dommage....({randomFDD})")
+            await ctx.send(f"tu as eu{contents[chosen]}")
+
+            with open("fdd.txt", "w") as i:
+                del contents[chosen]
+                y.dump(contents)
+        else:
+            await ctx.send(f"t'as rien... dommage....({randomFDD})")
+
+
+
 
 
 
