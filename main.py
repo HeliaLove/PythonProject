@@ -46,25 +46,38 @@ async def on_message(message):
 
 
 @bot.command()
-async def fdd_add_list(ctx,msg):
+async def fdd_add(ctx,msg):
     with open(f"fdd.json", "w") as f:
         x = [f"{msg}"]
         json.dump({"FDD" : x}, f)
+        await ctx.send(f"{msg} ajouté")
+
+
+@bot.command()
+async def fdd_help(ctx):
+    await ctx.send(
+        f"Pour les roll ! :\n1er roll:\n25 ou moins = fruit du démon\n2ème roll :\n95 ou plus = Logia\n 70 ou plus = Zoan\n en dessous de 70 = Paramecia")
 
 @bot.command()
 async def fdd_random(ctx):
-#    y = json.loads(open(f"fdd.json", "r").read())
-#    await ctx.send(y)
+
+    y = json.loads(open(f"fdd.json", "r").read())
+
+
     randomFDD = random.randint(1,100)
     if randomFDD <= 25:
-        await ctx.send(f"tu as un fruit du démon !!!!! :0 ({randomFDD})")
+        await ctx.send(f"tu as un fruit du démon !!!!! :0 (roll : {randomFDD})")
+
         randomFDD = random.randint(1,100)
         if randomFDD >= 95:
-            await ctx.send(f"tu as un logia !!!!!!!!! :0 :0 :0 GG ({randomFDD})")
+            await ctx.send(f"tu as un Logia !!!!!!!!! :0 :0 :0 GG (roll : {randomFDD})")
         elif randomFDD >= 70 :
-            await ctx.send(f"tu as un Zoan !!!! ({randomFDD})")
+            await ctx.send(f"tu as un Zoan !!!! (roll : {randomFDD})")
         elif randomFDD < 70  :
             await ctx.send(f"tu as un Paramecia ({randomFDD})")
+
+
+
     else:
         await ctx.send(f"t'as rien... dommage....({randomFDD})")
 
@@ -78,7 +91,7 @@ async def fdd_random(ctx):
 # fdd si oui -> quel genre de fruit
 # soit zoan 25%, logia 5%, Paramecia 70%
 # zoan -> classique 60%, préhistorique 35%, mythique 5%
-# aléatoire dans la liste -> enlever automatiquement
+# Paramecia aléatoire dans la liste -> enlever automatiquement
 
 
 webserver.keep_alive()
