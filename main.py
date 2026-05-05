@@ -58,13 +58,13 @@ async def fdd_random(ctx):
     randomFDD = random.randint(1,100)
     if randomFDD <= 25:
         await ctx.send("tu as un fruit du démon !!!!! :0")
-    randomFDD = random.randint(1,100)
-    if randomFDD >= 95:
-        await ctx.send("tu as un logia !!!!!!!!! :0 :0 :0 GG")
-    elif randomFDD >= 70 :
-        await ctx.send("tu as un Zoan !!!!")
-    elif randomFDD < 70  :
-        await ctx.send("tu as un Paramecia")
+        randomFDD = random.randint(1,100)
+        if randomFDD >= 95:
+            await ctx.send("tu as un logia !!!!!!!!! :0 :0 :0 GG")
+        elif randomFDD >= 70 :
+            await ctx.send("tu as un Zoan !!!!")
+        elif randomFDD < 70  :
+            await ctx.send("tu as un Paramecia")
 
 
 
