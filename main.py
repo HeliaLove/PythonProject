@@ -108,9 +108,11 @@ async def fdd_paramecia_test(ctx):
         for line in contents:
             i.write(line)
 
+
 async def fdd_list(ctx):
     with open("fdd.txt", "r") as y:
-        await ctx.send(f"{y.readlines()}")
+        for line in y.readlines():
+            await ctx.send(f"{line}")
 
 
 # fdd 25% de chance d'avoir
