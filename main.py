@@ -78,7 +78,7 @@ async def fdd_random(ctx):
                 for line in contents:
                     fruitlist.append(line)
             chosen = random.randint(0, len(fruitlist))
-            await ctx.send(f"tu as eu{fruitlist[chosen]}")
+            await ctx.send(f"tu as eu {fruitlist[chosen]}")
 
             with open("fdd.txt", "w") as i:
                 del fruitlist[chosen]
@@ -87,7 +87,7 @@ async def fdd_random(ctx):
                 for x in fruitlist:
                     i.write(x)
     else:
-        await ctx.send(f"t'as rien... dommage....({randomFDD})")
+        await ctx.send(f"t'as rien... dommage.... ({randomFDD})")
 
 
 
@@ -100,7 +100,7 @@ async def fdd_paramecia_test(ctx):
         for line in contents:
             fruitlist.append(line)
     chosen = random.randint(0, len(fruitlist))
-    await ctx.send(f"tu as eu{fruitlist[chosen]}")
+    await ctx.send(f"tu as eu {fruitlist[chosen]}")
 
     with open("fdd.txt", "w") as i:
         del contents[chosen]
