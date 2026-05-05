@@ -65,6 +65,8 @@ async def fdd_random(ctx):
             await ctx.send("tu as un Zoan !!!!")
         elif randomFDD < 70  :
             await ctx.send("tu as un Paramecia")
+    else:
+        await ctx.send("t'as rien... dommage ¯\_(ツ)_/¯")
 
 
 
