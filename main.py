@@ -100,7 +100,6 @@ async def fdd_random(ctx):
 
 
 
-
 @bot.command()
 async def fdd_paramecia_test(ctx):
     fruitlist = []
@@ -120,10 +119,14 @@ async def fdd_paramecia_test(ctx):
             i.write(line)
 
 @bot.command()
-async def fdd_list(ctx):
-    with open("fdd.txt", "r") as y:
-        for line in y.readlines():
-            await ctx.send(f"{line}")
+async def fdd_list(ctx, msg):
+    if msg == "clear" :
+        with open("fdd.txt", "w") as i:
+            i.write("")
+    else:
+        with open("fdd.txt", "r") as y:
+            for line in y.readlines():
+                await ctx.send(f"{line}")
 
 
 # fdd 25% de chance d'avoir
