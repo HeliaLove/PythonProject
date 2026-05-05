@@ -47,8 +47,8 @@ async def on_message(message):
 @bot.command()
 async def fdd_add(ctx,msg):
     with open(f"fdd.txt", "a") as f:
-        x = [f"{msg}"]
-        f.dump(x)
+        x = f"{msg}"
+        f.write(x)
         await ctx.send(f"{msg} ajouté")
 
 
@@ -84,7 +84,10 @@ async def fdd_random(ctx):
 
             with open("fdd.txt", "w") as i:
                 del contents[chosen]
-                y.dump(contents)
+                i.write("")
+            with open("fdd.txt", "a") as i:
+                for line in contents:
+                    i.write(line)
         else:
             await ctx.send(f"t'as rien... dommage....({randomFDD})")
 
@@ -101,7 +104,10 @@ async def fdd_paramecia_test(ctx):
 
     with open("fdd.txt", "w") as i:
         del contents[chosen]
-        y.dump(contents)
+        i.write("")
+    with open("fdd.txt", "a") as i:
+        for line in contents:
+            i.write(line)
 
 
 
