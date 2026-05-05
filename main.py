@@ -57,7 +57,7 @@ async def fdd_random(ctx):
 #    await ctx.send(y)
     randomFDD = random.randint(1,100)
     if randomFDD <= 25:
-    await ctx.send("tu as un fruit du démon !!!!! :0")
+        await ctx.send("tu as un fruit du démon !!!!! :0")
     randomFDD = random.randint(1,100)
     if randomFDD >= 95:
         await ctx.send("tu as un logia !!!!!!!!! :0 :0 :0 GG")
