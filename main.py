@@ -55,11 +55,10 @@ async def fdd_add(ctx,msg):
 @bot.command()
 async def fdd_help(ctx):
     await ctx.send(
-        f"Pour les roll ! :\n1er roll:\n25 ou moins = fruit du démon\n2ème roll :\n95 ou plus = Logia\n70 ou plus = Zoan\nen dessous de 70 = Paramecia")
+        f"Pour les roll ! :\n1er roll:\n25 ou moins = fruit du démon\n2ème roll :\n95 ou plus = Logia\n70 ou plus = Zoan\nen dessous de 70 = Paramecia\n\nsi Zoan :\n95 ou plus = mythique\n60 ou plus = préhistorique\nen dessous de 60 = classique")
 
 @bot.command()
 async def fdd_random(ctx):
-
 
     randomFDD = random.randint(1,100)
     if randomFDD <= 25:
@@ -70,22 +69,32 @@ async def fdd_random(ctx):
             await ctx.send(f"tu as un Logia !!!!!!!!! :0 :0 :0 GG (roll : {randomFDD})")
         elif randomFDD >= 70 :
             await ctx.send(f"tu as un Zoan !!!! (roll : {randomFDD})")
+            randomFDD = random.randint(1, 100)
+            if randomFDD >= 95:
+                await ctx.send(f"tu as un Zoan mythique!!!! WOW :0 :0 !!!!! (roll : {randomFDD})")
+            elif randomFDD >= 60 :
+                await ctx.send(f"tu as un Zoan préhistorique !! (roll : {randomFDD})")
+            elif randomFDD < 60 :
+                await ctx.send(f"tu as un Zoan classique (roll : {randomFDD})")
         elif randomFDD < 70  :
             await ctx.send(f"tu as un Paramecia ({randomFDD})")
+
+
+            fruitlist = []
             with open("fdd.txt", "r") as y:
                 contents = y.readlines()
-                chosen = random.randint(0 , len(contents))
 
-
-
-            await ctx.send(f"tu as eu{contents[chosen]}")
+                for line in contents:
+                    fruitlist.append(line)
+            chosen = random.randint(0, len(fruitlist))
+            await ctx.send(f"tu as eu{fruitlist[chosen]}")
 
             with open("fdd.txt", "w") as i:
-                del contents[chosen]
+                del fruitlist[chosen]
                 i.write("")
             with open("fdd.txt", "a") as i:
-                for line in contents:
-                    i.write(line)
+                for x in fruitlist:
+                    i.write(x)
         else:
             await ctx.send(f"t'as rien... dommage....({randomFDD})")
 
@@ -94,12 +103,14 @@ async def fdd_random(ctx):
 
 @bot.command()
 async def fdd_paramecia_test(ctx):
-    await ctx.send(f"tu as un Paramecia")
+    fruitlist = []
     with open("fdd.txt", "r") as y:
         contents = y.readlines()
-        chosen = random.randint(0, len(contents))
 
-        await ctx.send(f"tu as eu {contents[chosen]}")
+        for line in contents:
+            fruitlist.append(line)
+    chosen = random.randint(0, len(fruitlist))
+    await ctx.send(f"tu as eu{fruitlist[chosen]}")
 
     with open("fdd.txt", "w") as i:
         del contents[chosen]
