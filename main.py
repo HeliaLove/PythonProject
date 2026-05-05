@@ -25,7 +25,7 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
-    await member.send(f"Welcome {member.name}!")
+    await member.send(f"bienvenue par minous ! {member.mention}!")
 
 
 @bot.event
@@ -36,13 +36,14 @@ async def on_message(message):
         await message.channel.send(f"{message.author.mention} !!!!!")
     await bot.process_commands(message)
 
+
+
 @bot.command()
 async def fdd_add(ctx,msg):
     with open(f"fdd.txt", "a") as f:
         x = f"{msg}\n"
         f.write(x)
         await ctx.send(f"{msg} ajouté")
-
 
 @bot.command()
 async def fdd_help(ctx):
@@ -70,7 +71,6 @@ async def fdd_random(ctx):
         elif randomFDD < 70  :
             await ctx.send(f"tu as un Paramecia ({randomFDD})")
 
-
             fruitlist = []
             with open("fdd.txt", "r") as y:
                 contents = y.readlines()
@@ -88,7 +88,6 @@ async def fdd_random(ctx):
                     i.write(x)
     else:
         await ctx.send(f"t'as rien... dommage.... ({randomFDD})")
-
 
 
 @bot.command()
@@ -118,6 +117,8 @@ async def fdd_list(ctx, msg):
         with open("fdd.txt", "r") as y:
             for line in y.readlines():
                 await ctx.send(f"{line}")
+    else :
+        await ctx.send(f"veuillez entrer soit show ou clear à la suite de la commande")
 
 
 @bot.command()
@@ -130,6 +131,7 @@ async def fdd_del(ctx, msg):
         for x in fruitlist:
             if x == msg:
                 fruitlist.remove(x)
+    await ctx.send(f"{msg} supprimé de la liste.")
 
 
 @bot.command()
