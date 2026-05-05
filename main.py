@@ -47,7 +47,7 @@ async def on_message(message):
 @bot.command()
 async def fdd_add(ctx,msg):
     with open(f"fdd.txt", "a") as f:
-        x = f"{msg}"
+        x = f"{msg}\n"
         f.write(x)
         await ctx.send(f"{msg} ajouté")
 
@@ -59,8 +59,6 @@ async def fdd_help(ctx):
 
 @bot.command()
 async def fdd_random(ctx):
-
-
 
 
     randomFDD = random.randint(1,100)
@@ -100,7 +98,8 @@ async def fdd_paramecia_test(ctx):
     with open("fdd.txt", "r") as y:
         contents = y.readlines()
         chosen = random.randint(0, len(contents))
-        await ctx.send(f"tu as eu{contents[chosen]}")
+
+        await ctx.send(f"tu as eu {contents[chosen]}")
 
     with open("fdd.txt", "w") as i:
         del contents[chosen]
@@ -109,8 +108,11 @@ async def fdd_paramecia_test(ctx):
         for line in contents:
             i.write(line)
 
-
-
+async def fdd_list(ctx):
+    with open("fdd.txt", "r") as y:
+        contents = y.readlines()
+        for line in contents:
+            await ctx.send(f"{contents}  ")
 
 
 # fdd 25% de chance d'avoir
