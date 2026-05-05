@@ -11,7 +11,6 @@ load_dotenv()
 
 token = os.environ['DISCORD_TOKEN']
 
-##test
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 intents = discord.Intents.default()
 intents.message_content = True
@@ -37,13 +36,6 @@ async def on_message(message):
         await message.channel.send(f"{message.author.mention} !!!!!")
     await bot.process_commands(message)
 
-
-
-#@bot.command()
-#async def fdd_create_list(ctx,msg):
-#    f = open(f"{msg}.json", "x")
-
-
 @bot.command()
 async def fdd_add(ctx,msg):
     with open(f"fdd.txt", "a") as f:
@@ -63,7 +55,6 @@ async def fdd_random(ctx):
     randomFDD = random.randint(1,100)
     if randomFDD <= 25:
         await ctx.send(f"tu as un fruit du démon !!!!! :0 (roll : {randomFDD})")
-
         randomFDD = random.randint(1,100)
         if randomFDD >= 95:
             await ctx.send(f"tu as un Logia !!!!!!!!! :0 :0 :0 GG (roll : {randomFDD})")
@@ -95,8 +86,8 @@ async def fdd_random(ctx):
             with open("fdd.txt", "a") as i:
                 for x in fruitlist:
                     i.write(x)
-        else:
-            await ctx.send(f"t'as rien... dommage....({randomFDD})")
+    else:
+        await ctx.send(f"t'as rien... dommage....({randomFDD})")
 
 
 
@@ -128,6 +119,9 @@ async def fdd_list(ctx, msg):
             for line in y.readlines():
                 await ctx.send(f"{line}")
 
+@bot.command()
+async def HBot_help(ctx):
+    await ctx.send(f"fdd_add ajoute un fruit à la liste\nfdd_list [show(montre la liste), clear(enlève TOUT de la liste)]\nfdd_random tire un fruit aléatoirement\nfdd_help donne les probabilité des genres de fruits")
 
 # fdd 25% de chance d'avoir
 # fdd si oui -> quel genre de fruit
