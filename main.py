@@ -108,7 +108,7 @@ async def fdd_paramecia_test(ctx):
         for line in contents:
             i.write(line)
 
-
+@bot.command()
 async def fdd_list(ctx):
     with open("fdd.txt", "r") as y:
         for line in y.readlines():
