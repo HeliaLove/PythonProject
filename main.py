@@ -91,7 +91,17 @@ async def fdd_random(ctx):
 
 
 
+@bot.command()
+async def fdd_paramecia_test(ctx):
+    await ctx.send(f"tu as un Paramecia")
+    with open("fdd.txt", "r") as y:
+        contents = y.readlines()
+        chosen = random.randint(0, len(contents))
+        await ctx.send(f"tu as eu{contents[chosen]}")
 
+    with open("fdd.txt", "w") as i:
+        del contents[chosen]
+        y.dump(contents)
 
 
 
