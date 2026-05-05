@@ -111,13 +111,27 @@ async def fdd_paramecia_test(ctx):
 
 @bot.command()
 async def fdd_list(ctx, msg):
-    if msg == "clear" :
-        with open("fdd.txt", "w") as i:
-            i.write("")
+    if msg :
+        if msg == "clear" :
+            with open("fdd.txt", "w") as i:
+                i.write("")
     else:
         with open("fdd.txt", "r") as y:
             for line in y.readlines():
                 await ctx.send(f"{line}")
+
+
+@bot.command()
+async def fdd_del(ctx, msg):
+    fruitlist = []
+    with open("fdd.txt", "r") as y:
+        contents = y.readlines()
+        for line in contents:
+            fruitlist.append(line)
+        for x in fruitlist:
+            if x == msg:
+                fruitlist.remove(x)
+
 
 @bot.command()
 async def HBot_help(ctx):
