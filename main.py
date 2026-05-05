@@ -4,14 +4,15 @@ import logging
 from dotenv import load_dotenv
 import json
 import os
-import webbrowser
+import random
 
 import webserver
 
 load_dotenv()
 
-token = os.getenv("DISCORD_TOKEN")
+token = os.environ['DISCORD_TOKEN']
 
+##test
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 intents = discord.Intents.default()
 intents.message_content = True
@@ -39,9 +40,9 @@ async def on_message(message):
 
 
 
-@bot.command()
-async def fdd_create_list(ctx,msg):
-    f = open(f"{msg}.json", "x")
+#@bot.command()
+#async def fdd_create_list(ctx,msg):
+#    f = open(f"{msg}.json", "x")
 
 
 @bot.command()
@@ -52,8 +53,18 @@ async def fdd_add_list(ctx,msg):
 
 @bot.command()
 async def fdd_random(ctx):
-    y = json.loads(open(f"fdd.json", "r").read())
-    await ctx.send(y)
+#    y = json.loads(open(f"fdd.json", "r").read())
+#    await ctx.send(y)
+    randomFDD = random.randint(1,100)
+    if randomFDD <= 25:
+    await ctx.send("tu as un fruit du démon !!!!! :0")
+    randomFDD = random.randint(1,100)
+    if randomFDD >= 95:
+        await ctx.send("tu as un logia !!!!!!!!! :0 :0 :0 GG")
+    elif randomFDD >= 70 :
+        await ctx.send("tu as un Zoan !!!!")
+    elif randomFDD < 70  :
+        await ctx.send("tu as un Paramecia")
 
 
 
