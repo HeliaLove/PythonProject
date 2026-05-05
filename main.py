@@ -111,11 +111,10 @@ async def fdd_paramecia_test(ctx):
 
 @bot.command()
 async def fdd_list(ctx, msg):
-    if msg :
-        if msg == "clear" :
-            with open("fdd.txt", "w") as i:
-                i.write("")
-    else:
+    if msg == "clear" :
+        with open("fdd.txt", "w") as i:
+            i.write("")
+    elif msg == "show" :
         with open("fdd.txt", "r") as y:
             for line in y.readlines():
                 await ctx.send(f"{line}")
